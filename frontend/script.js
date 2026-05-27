@@ -20,7 +20,7 @@ async function fetchRecommend(bodyParts, equipments, goals, level) {
     goals.forEach(v => params.append("goal", v));
     if (level) params.append("level", level);
 
-    const response = await fetch(`http://127.0.0.1:5000/recommend?${params.toString()}`);
+    const response = await fetch(`/recommend?${params.toString()}`);
     const data = await response.json();
     return data.exercises;
 }
@@ -212,7 +212,7 @@ async function saveRoutine() {
     const userId = getUserId();
 
     try {
-        await fetch("http://127.0.0.1:5000/save_routine", {
+        await fetch("/save_routine", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -237,7 +237,7 @@ async function saveRoutine() {
 // ==========================================
 async function fetchWeeklyStats() {
     const userId = getUserId();
-    const response = await fetch(`http://127.0.0.1:5000/weekly_stats?user_id=${userId}`);
+    const response = await fetch(`/weekly_stats?user_id=${userId}`);
     const data = await response.json();
 
     const statsEl = document.getElementById("weekly-stats");
@@ -295,7 +295,7 @@ async function showHistory() {
     navigateToPage("step-history");
 
     try {
-        const response = await fetch(`http://127.0.0.1:5000/get_routines?user_id=${userId}`);
+        const response = await fetch(`/get_routines?user_id=${userId}`);
         const data = await response.json();
 
         container.innerHTML = "";
