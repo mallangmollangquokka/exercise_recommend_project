@@ -4,3 +4,12 @@ services:
     ports:
       - "5000:5000"
     restart: always
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
