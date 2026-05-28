@@ -1,0 +1,402 @@
+/* ========================================== */
+/* 1. 디자인 시스템 & 기본 세팅 (라이트 테마) */
+/* ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --primary-color: #3a86ff;
+    --primary-hover: #2563eb;
+    --point-color: #06d6a0;
+    --point-hover: #04b485;
+    --bg-main: #f4f6f9;
+    --card-bg: #ffffff;
+    --text-main: #1d1e2c;
+    --text-sub: #8d99ae;
+    --border-color: #e2e8f0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 28px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    padding: 40px 30px;
+    transition: all 0.3s ease;
+}
+
+/* ========================================== */
+/* 2. 화면 제어 및 애니메이션 */
+/* ========================================== */
+.page-section {
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-header h2 {
+    font-size: 24px;
+    color: var(--text-main);
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.section-header p {
+    font-size: 14px;
+    color: var(--text-sub);
+    line-height: 1.4;
+}
+
+/* ========================================== */
+/* 3. 버튼 및 인터랙션 디테일 */
+/* ========================================== */
+.action-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(58, 134, 255, 0.25);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(58, 134, 255, 0.35);
+}
+
+#search-btn {
+    background: var(--point-color);
+    box-shadow: 0 6px 16px rgba(6, 214, 160, 0.25);
+}
+
+#search-btn:hover {
+    background: var(--point-hover);
+    box-shadow: 0 8px 20px rgba(6, 214, 160, 0.35);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.sub-btn {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-sub);
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: all 0.2s ease;
+}
+
+.sub-btn:hover {
+    background: #f8fafc;
+    color: var(--text-main);
+    border-color: #cbd5e1;
+}
+
+/* ========================================== */
+/* 스텝 1: 메인 화면 디테일 */
+/* ========================================== */
+.main-welcome {
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.main-welcome .emoji {
+    font-size: 80px;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.main-welcome h1 {
+    font-size: 26px;
+    line-height: 1.4;
+    margin-bottom: 16px;
+    color: var(--text-main);
+    font-weight: 700;
+    letter-spacing: -0.8px;
+}
+
+.main-welcome p {
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 45px;
+}
+
+/* ========================================== */
+/* 스텝 2: 조건 선택 필터 디테일 */
+/* ========================================== */
+.filter-group {
+    margin-bottom: 28px;
+}
+
+.filter-group label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #475569;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 11px 20px;
+    border: 1px solid var(--border-color);
+    background: #f8fafc;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #64748b;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+.btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(58, 134, 255, 0.2);
+}
+
+/* ========================================== */
+/* 스텝 3: 결과 화면 및 카드 리스트 디테일 */
+/* ========================================== */
+.video-player-container {
+    width: 100%;
+    height: 500px;
+    background: #0f172a;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-size: 13px;
+    padding: 25px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.workout-card {
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #f1f5f9;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.workout-card:hover {
+    transform: translateY(-2px);
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.badge-container {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.badge {
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 6px;
+}
+
+.badge.body-part { background: #e0f2fe; color: #0369a1; }
+.badge.equipment { background: #fef3c7; color: #b45309; }
+.badge.goal { background: #dcfce7; color: #15803d; }
+
+.workout-title {
+    font-size: 18px;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+/* 세트/횟수 표시 (추가) */
+.workout-sets {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.play-video-btn {
+    padding: 8px 14px;
+    background: white;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.play-video-btn:hover {
+    background: #ff4d4d;
+    color: white;
+    border-color: #ff4d4d;
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+}
+
+/* 즐겨찾기 버튼 (추가) */
+.wish-btn {
+    padding: 8px 14px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: all 0.2s ease;
+}
+
+.wish-btn:hover {
+    background: #fff0f0;
+    border-color: #ff4d4d;
+}
+
+/* 즐겨찾기 고정 버튼 */
+#favorites-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 12px 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(58, 134, 255, 0.3);
+    transition: all 0.2s ease;
+    z-index: 999;
+}
+
+#favorites-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* 필수 표시 */
+.required {
+    color: #ff4d4d;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* 비활성화 버튼 */
+.btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* 즐겨찾기 영상 재생 영역 */
+.favorites-video-container {
+    width: 100%;
+    height: 500px;
+    background: #0f172a;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+/* 루틴 기록 고정 버튼 */
+#history-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    padding: 12px 20px;
+    background: var(--point-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(6, 214, 160, 0.3);
+    transition: all 0.2s ease;
+    z-index: 999;
+}
+
+#history-btn:hover {
+    background: var(--point-hover);
+    transform: translateY(-2px);
+}
