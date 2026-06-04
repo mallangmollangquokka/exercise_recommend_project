@@ -1,6 +1,26 @@
 services:
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "8081:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - app-network
+
   backend:
     build: ./backend
+    container_name: backend
     ports:
       - "5000:5000"
     restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
